@@ -68,7 +68,7 @@ jobs:
         run: npx http-server -p 3000 &
         
       - name: get chromedriver
-      - run: npx chromedriver &
+        run: npx chromedriver &
         
       - name: Run axe
         run: | 
