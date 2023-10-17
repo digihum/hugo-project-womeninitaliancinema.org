@@ -62,10 +62,7 @@ jobs:
         with:
           path: ./public
       - name: Use Node.js 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: "npm"
+        uses: mikeal/npx@1.0.0
       - name: start static web server
         run: npx http-server -p 3000
       - name: Run axe
