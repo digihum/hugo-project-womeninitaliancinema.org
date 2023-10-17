@@ -63,13 +63,20 @@ jobs:
           path: ./public
       - name: Use Node.js 16
         uses: mikeal/npx@1.0.0
+        
       - name: start static web server
         run: npx http-server -p 3000 &
+        
+      - name: get chromedriver
+        uses: nanasess/setup-chromedriver@v2
+      - run: chromedriver --url-base=/wd/hub &
+        
       - name: Run axe
         run: | 
           npx wait-on http://127.0.0.1:3000 
           npm install -g @axe-core/cli
           axe --exit --tags wcag2aa --stdout http://localhost:3000 
+          
       - name: Upload axe results
         uses: actions/upload-pages-artifact@v2
         with:
