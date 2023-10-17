@@ -62,19 +62,8 @@ jobs:
         with:
           path: ./public
       - name: Scan for accessibility issues
-        uses: microsoft/accessibility-insights-action@v3.5
-        with:
-            hosting-mode: staticSite
-            static-site-dir: ./public
-
+        uses: digihum/axe-pipelines-samples@2ae4ecaf3ebf301b6bb040bf101af6b8f8871af8
             # Provide any additional inputs here
-            fail-on-accessibility-error: true
-      - name: Upload report artifact
-        if: success() || failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: accessibility-reports
-          path: ${{ github.workspace }}/_accessibility-reports
             
   # Deployment job
   deploy:
