@@ -67,11 +67,12 @@ jobs:
           node-version: 16
           cache: "npm"
       - name: start static web server
-      - run: npx http-server -p 3000
+        run: npx http-server -p 3000
       - name: Run axe
-      - run: npm start & npx wait-on http://localhost:3000 
-      - run: npm install -g @axe-core/cli
-      - run: axe --exit --tags wcag2aa --stdout http://localhost:3000 
+        run: | 
+        npx wait-on http://localhost:3000 
+        npm install -g @axe-core/cli
+        axe --exit --tags wcag2aa --stdout http://localhost:3000 
       - name: Upload axe results
         uses: actions/upload-pages-artifact@v2
         with:
