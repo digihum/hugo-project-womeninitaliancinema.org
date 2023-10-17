@@ -67,17 +67,21 @@ jobs:
       - name: start static web server
         run: npx http-server -p 3000 &
 
+      # - name: get chromedriver
+      #   uses: nanasess/setup-chromedriver@v2.2.0
+      #   with:
+      #     chromedriver-version: 118
+
       - name: get chromedriver
-        uses: nanasess/setup-chromedriver@v2.2.0
-        with:
-          chromedriver-version: 118
+        run: npm install -g chromedriver
         
       - name: Run axe
         run: | 
           chromedriver --url-base=/wd/hub &     
           npx wait-on http://127.0.0.1:3000 
           npm install -g @axe-core/cli
-          axe --exit --tags wcag2aa --stdout --chromedriver-path="/opt/google/chrome/chrome" http://localhost:3000 
+          axe --exit --tags wcag2aa --stdout http://127.0.0.1:3000 
+          # axe --exit --tags wcag2aa --stdout --chromedriver-path="/opt/google/chrome/chrome" http://127.0.0.1:3000 
           
       - name: Upload axe results
         uses: actions/upload-pages-artifact@v2
