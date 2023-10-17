@@ -75,7 +75,7 @@ jobs:
           chromedriver --url-base=/wd/hub &     
           npx wait-on http://127.0.0.1:3000 
           npm install -g @axe-core/cli
-          axe --exit --tags wcag2aa --stdout http://localhost:3000 
+          axe --exit --tags wcag2aa --stdout --chromedriver-path="/opt/google/chrome/chrome" http://localhost:3000 
           
       - name: Upload axe results
         uses: actions/upload-pages-artifact@v2
