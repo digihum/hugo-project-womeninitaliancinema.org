@@ -62,7 +62,7 @@ jobs:
         with:
           path: ./public
       - name: Scan for accessibility issues
-        uses: digihum/axe-pipelines-samples@339f7e4cfeb3ea56d33091d4dbba4955be7851f8
+        uses: digihum/axe-pipelines-samples
             # Provide any additional inputs here
             
   # Deployment job
