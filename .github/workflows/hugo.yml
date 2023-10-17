@@ -65,12 +65,18 @@ jobs:
         uses: microsoft/accessibility-insights-action@v3
         with:
             # Provide either static-site-dir or url
-            static-site-dir: ./public
-            # url: your-website-url
+            static-site-dir: ${{ steps.pages.outputs.base_url }}
+            static-site-dir-relative-path: ./public
 
             # Provide any additional inputs here
             fail-on-accessibility-error: true
-
+      - name: Upload report artifact
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: accessibility-reports
+          path: ${{ github.workspace }}/_accessibility-reports
+            
   # Deployment job
   deploy:
     environment:
