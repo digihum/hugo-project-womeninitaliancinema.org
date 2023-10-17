@@ -64,9 +64,8 @@ jobs:
       - name: Scan for accessibility issues
         uses: microsoft/accessibility-insights-action@v3
         with:
-            # Provide either static-site-dir or url
-            static-site-dir: ${{ steps.pages.outputs.base_url }}
-            static-site-dir-relative-path: ./public
+            hosting-mode: staticSite
+            static-site-dir: /
 
             # Provide any additional inputs here
             fail-on-accessibility-error: true
