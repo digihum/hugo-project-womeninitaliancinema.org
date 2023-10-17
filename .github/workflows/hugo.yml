@@ -68,8 +68,7 @@ jobs:
         run: npx http-server -p 3000 &
         
       - name: get chromedriver
-        uses: nanasess/setup-chromedriver@v2
-      - run: chromedriver --url-base=/wd/hub &
+      - run: npx chromedriver &
         
       - name: Run axe
         run: | 
