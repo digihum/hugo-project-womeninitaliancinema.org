@@ -68,13 +68,14 @@ jobs:
         run: npx http-server -p 3000 &
         
       - name: get chromedriver
-        run: npx chromedriver &
+        uses: nanasess/setup-chromedriver@v2.2.0
         
       - name: Run axe
         run: | 
+          chromedriver --url-base=/wd/hub &     
           npx wait-on http://127.0.0.1:3000 
           npm install -g @axe-core/cli
-          axe --exit --tags wcag2aa --stdout --chromedriver-path $(npm root -g)/chromedriver/bin/chromedriver http://localhost:3000 
+          axe --exit --tags wcag2aa --stdout http://localhost:3000 
           
       - name: Upload axe results
         uses: actions/upload-pages-artifact@v2
