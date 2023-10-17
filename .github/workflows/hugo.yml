@@ -65,7 +65,7 @@ jobs:
         uses: microsoft/accessibility-insights-action@v3
         with:
             hosting-mode: staticSite
-            static-site-dir: /
+            static-site-dir: ./
 
             # Provide any additional inputs here
             fail-on-accessibility-error: true
