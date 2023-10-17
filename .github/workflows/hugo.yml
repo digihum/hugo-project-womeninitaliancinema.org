@@ -62,7 +62,7 @@ jobs:
         with:
           path: ./public
       - name: Scan for accessibility issues
-        uses: microsoft/accessibility-insights-action@v3
+        uses: microsoft/accessibility-insights-action@v3.5
         with:
             hosting-mode: staticSite
             static-site-dir: ./public
@@ -71,7 +71,7 @@ jobs:
             fail-on-accessibility-error: true
       - name: Upload report artifact
         if: success() || failure()
-        uses: actions/upload-artifact@v3.5
+        uses: actions/upload-artifact@v3
         with:
           name: accessibility-reports
           path: ${{ github.workspace }}/_accessibility-reports
