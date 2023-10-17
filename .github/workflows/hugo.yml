@@ -61,6 +61,15 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./public
+      - name: Scan for accessibility issues
+        uses: microsoft/accessibility-insights-action@v3
+        with:
+            # Provide either static-site-dir or url
+            static-site-dir: ./public
+            # url: your-website-url
+
+            # Provide any additional inputs here
+            fail-on-accessibility-error: true
 
   # Deployment job
   deploy:
